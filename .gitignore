@@ -14,3 +14,6 @@ data/
 # Smoke-test recording: personal voice, not evidence for any number.
 sample.wav
 sample.txt
+
+# Wiring-check runs with the Echo stand-in: behind no number in the README.
+results/raw/echo__*.json
