@@ -1,6 +1,16 @@
 .venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 .DS_Store
+
+# Corpus cache: large, and anyone can re-download it.
 data/
-*.txt
+~/.cache/huggingface/
+
+# Results ARE committed. The raw transcripts are the evidence for every
+# number in the README, so they belong in the repository.
+
+# Smoke-test recording: personal voice, not evidence for any number.
+sample.wav
+sample.txt

@@ -1,0 +1,18 @@
+# Core measurement. Pinned loosely: these APIs are stable and a reader
+# reproducing this a year from now should not be fighting version solving.
+jiwer>=4.0
+num2words>=0.5
+numpy>=2.0
+soxr>=1.0
+soundfile>=0.13
+
+# Corpus. The audio column is read with soundfile rather than torchcodec,
+# so no torch build needs to match.
+datasets>=5.0
+
+# Whisper on Apple Silicon. Swap for faster-whisper or transformers to run
+# this elsewhere; the Engine interface is three lines.
+mlx-whisper>=0.4
+
+# Tests
+pytest>=8.0
