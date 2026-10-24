@@ -64,5 +64,16 @@ def test_int_audio_becomes_float32():
 def test_describe_reports_the_sample_size():
     text = describe([make(2.0, "раз два"), make(4.0, "три четыре пять")])
     assert "2 utterances" in text
-    assert "5 reference words" in text
+    assert "5 reference words as written" in text
     assert "0.1 min" in text
+
+
+def test_describe_separates_the_written_and_scored_word_counts():
+    """
+    «в 2024 году» is three words written and six scored. The WER denominator
+    is the scored count, so a line that reported only the written one would
+    not reconcile with the table.
+    """
+    text = describe([make(1.0, "в 2024 году")])
+    assert "3 reference words as written" in text
+    assert "6 after number expansion" in text

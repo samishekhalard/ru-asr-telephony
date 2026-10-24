@@ -36,6 +36,8 @@ from dataclasses import dataclass
 import numpy as np
 import soundfile as sf
 
+from metrics import normalize
+
 # The Hub id and config. Kept as module constants because if the dataset moves
 # this is the only line that should need changing.
 DATASET = "google/fleurs"
@@ -157,10 +159,20 @@ def load_utterances(
 
 
 def describe(utterances: list[Utterance]) -> str:
-    """One line for the README, so the sample size is never left implicit."""
+    """
+    One line for the README, so the sample size is never left implicit.
+
+    Two word counts, because they differ and only one of them is the WER
+    denominator. Normalisation expands digits into words, so «в 2024 году»
+    is three words as written and five as scored. Reporting only the written
+    count would mean anyone dividing errors by it gets a different rate than
+    the table shows.
+    """
     total = sum(u.seconds for u in utterances)
-    words = sum(len(u.reference.split()) for u in utterances)
+    written = sum(len(u.reference.split()) for u in utterances)
+    scored = sum(len(normalize(u.reference).split()) for u in utterances)
     return (
         f"{len(utterances)} utterances, {total / 60:.1f} min of audio, "
-        f"{words} reference words"
+        f"{written} reference words as written, {scored} after number "
+        f"expansion (the WER denominator)"
     )

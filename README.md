@@ -25,9 +25,10 @@ nobody could say what happens on a phone line without measuring it.
 ## What was measured
 
 200 utterances from FLEURS Russian (read news sentences, studio recorded,
-human transcripts, CC-BY): 37.4 minutes of audio, 3,752 reference words. The
-same utterances pass through four channels, and one engine transcribes all
-four.
+human transcripts, CC-BY): 37.4 minutes of audio, 3,752 reference words as
+written and 3,827 after number expansion, which is the denominator every rate
+below is computed over. The same utterances pass through four channels, and
+one engine transcribes all four.
 
 | channel | what it does |
 |---|---|
@@ -176,7 +177,7 @@ src/
 ├── engines.py   one interface, Whisper behind it
 ├── metrics.py   normalisation, WER/CER, bootstrap, paired comparison
 └── run.py       the benchmark
-tests/           61 tests, offline, no model and no network
+tests/           62 tests, offline, no model and no network
 results/
 ├── summary.md   the tables above, regenerated
 └── raw/         every reference and hypothesis
@@ -188,7 +189,7 @@ results/
 pytest
 ```
 
-61 tests, none of which need a GPU, a model download or a network
+62 tests, none of which need a GPU, a model download or a network
 connection. They assert the physics (a 6 kHz tone must not survive an 8 kHz
 channel), the arithmetic (corpus-level rather than averaged), and the
 reasoning (pairing detects what overlapping intervals miss).

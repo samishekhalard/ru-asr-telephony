@@ -1,6 +1,6 @@
 # Results
 
-200 utterances, 37.4 min of audio, 3752 reference words. Measured 2026-10-24 on arm64 / Darwin.
+200 utterances, 37.4 min of audio, 3752 reference words as written, 3827 after number expansion (the WER denominator). Measured 2026-10-24 on arm64 / Darwin.
 
 ## Absolute error rates
 
